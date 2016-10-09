@@ -38,7 +38,7 @@ precision recursion_relation(int N, precision Phi_Zero, precision Phi_One)
 int main(){
 
 	ofstream output_file;
-	output_file.open("ouput");
+	output_file.open("output");
 	output_file.precision(15); //Set precision for floating-point output.
 
 	double phi = (-1+sqrt(5))/2;
