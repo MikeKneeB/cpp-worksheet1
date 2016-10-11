@@ -30,7 +30,9 @@ executables_to_compile={"w1q2.cpp" : "hello",
         "w1q3b.cpp" : "maxfloat",
         "w1q3c.cpp" : "difference",
         "w1q3d.cpp" : "sums",
-        "w1q4.cpp" : "silverratio"}
+        "w1q4.cpp" : "silverratio",
+        "w1q6.cpp" : "bisector",
+        "w1q7.cpp" : "newton-raphson"}
 
 print "Beginning build."
 

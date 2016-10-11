@@ -16,7 +16,7 @@ double Function(double Input_Value){
 
 double Bisection(double Lower_Bound, double Upper_Bound, double Precision){
 	
-	cout << setw(w) << count << setw(w) << Upper_Bound - Lower_Bound << setw(w) << (Upper_Bound + Lower_Bound)/2 << endl;
+	cout << setw(w) << count << setw(w) << (Upper_Bound - Lower_Bound)/2 << setw(w) << (Upper_Bound + Lower_Bound)/2 << endl;
 
 	if (Upper_Bound - Lower_Bound < Precision){
 		return (Upper_Bound + Lower_Bound)/2;
@@ -36,7 +36,7 @@ double Bisection(double Lower_Bound, double Upper_Bound, double Precision){
 
 }
 
-int main(int argv, char ** argc){
+int main(){
 
 	cout.precision(6);
 	cout << left << setw(w) << "Iteration" << setw(w) << "Precision" << setw(w) << "Theta" << endl;

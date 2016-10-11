@@ -1,2 +1,9 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Question 1}{1}
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Question 4}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Question 6}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Question 7}{6}

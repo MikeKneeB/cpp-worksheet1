@@ -4,9 +4,10 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
-\usepackage{float}
+\usepackage{amsfonts}
+\usepackage[backend=bibtex]{biblatex}
 
-\floatplacement{figure}{H}
+\addbibresource{bilbo.bib}
 
 \lstset{language=sh}
 \setlength{\parskip}{1em}
@@ -25,7 +26,7 @@
 
 \section{Question 1}
 
-For the first excercise a number of commands were input to the linux bash prompt, in order to understand what the different commands do and how to use them. Thecommands are listed here in order, with the output following and finally a description of what the command has done.
+For the first excercise a number of commands were input to the linux bash prompt, in order to understand what the different commands do and how to use them. The commands are listed here in order, with the output following and finally a description of what the command has done.
 \begin{enumerate}[label=\alph*)]
 	\item mkdir compphys
 
@@ -77,7 +78,7 @@ For the first excercise a number of commands were input to the linux bash prompt
 		Output is a man page, a text document describing the usage of the ``ls'' command. Calling man $<$command$>$ will display a man page on any command with proper documentation. Figure \ref{fig:manpage} shows the top of the ls man page.
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.3]{manls}
+			\includegraphics[scale=0.5]{manls}
 			\caption{Top of the man page for the ``ls'' command}
 			\label{fig:manpage}
 		\end{figure}
@@ -87,7 +88,7 @@ For the first excercise a number of commands were input to the linux bash prompt
 		Output is a display of running processes, ordered by CPU usage. The column processes are sorted by, and other options can be changed using commands while top is running. Figure \ref{fig:top} shows top while running, with the columns sorted by CPU usage.
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.3]{top}
+			\includegraphics[scale=0.5]{top}
 			\caption{The ``top'' command in action}
 			\label{fig:top}
 		\end{figure}
@@ -108,7 +109,7 @@ For the first excercise a number of commands were input to the linux bash prompt
 		An example output of the ``ps -u [username]'' is shown in figure \ref{fig:ps}. 
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.3]{ps}
+			\includegraphics[scale=0.4]{ps}
 			\caption{An example of ``ps -u [username]'' output}
 			\label{fig:ps}
 		\end{figure}
@@ -120,11 +121,34 @@ For the first excercise a number of commands were input to the linux bash prompt
 
 For this question a C++ program was required to calculate different powers of $\phi$ (the silver ratio), given by $\phi = \frac{-1 + \sqrt{5}}{2}$, and output the data to a file. The source code for this program is called ``w1q4.cpp'', and when run will output data to a file called ``output''. The code calculates and writes the power of phi by basic multiplication in lines 53-56.
 
-SHOW HERE...
+The recursion relation \[\phi^{n+1}=\phi^{n-1}-\phi^{n}\] can be shown by noting that if we multiply both sides by $\phi$ we get \[\phi^{n+2}=\phi^{n}-\phi^{n+1}\] we can then substitute $m=n+1$ to give us \[\phi^{m+1}=\phi^{m-1}-\phi^{m}\] This means the recursion relation is always valid for any value of $n\in\mathbb{Z}, n\geq n_0$ as long as the base case $n_0$ is defined for $n$ (as we can see $m$ must also be an integer greater than $n_0$).
 
-The function recursion\_relation (starting at line $20$ in the code) is the reursive function that uses the recursion relation defined as $\phi^{n+1}=\phi^{n-1}-\phi^{n}$. When the programme is run with values of $N$ greater than around $40$ the programme runs extremely slowly. This is because this recursive function runs in $O(n^2)$ time, and is therefore very slow.
+The base case is relatively easy to show using the properties of the golden ratio, and by extension its conjugate which we are interested in. It is easiest to show by taking the case that $n_0=0$, especially when we note that a property of the golden ratio (see reference \cite{goldenratio}) ($\Phi$) is \[\frac{1}{\Phi}=\Phi-1\] and therefore, because the silver ratio $\phi=\frac{1}{\Phi}$, that the silver ratio has a similar property \[\frac{1}{\phi}=\phi+1\] If we now take our recursion relation with $n=0$ \[\phi^1=\phi^{-1}-\phi^0\] \[\phi=\frac{1}{\phi}-1\] we can see that the recursion relation is satisfied by considering the properties of the silver ratio as the conjugate of the golden ratio.
 
+The function \texttt{recursion\_relation} (starting at line $20$ in the code) is the reursive function that uses the recursion relation defined as $\phi^{n+1}=\phi^{n-1}-\phi^{n}$. When the programme is run with values of $N$ greater than around $40$ the programme runs extremely slowly. This is because this recursive function runs in $O(n^2)$ time, and is therefore very slow.
 
+We can see by looking at the results that the two recursive functions both fail with varying degrees of severity. The function using floats begins to fluctuate relatively quickly, and produces very poor results. The double precision recursive function performs better, however it still produces fluctuations and innacuracies compared to our reference value calculated using direct multiplication.
+
+\section{Question 6}
+
+In this problem we consider a mass suspended by two springs from a bench, as shown in figure \ref{fig:masses}. We need to find the angle $\theta$ that the two spings make with the bench in terms of the known quantities: the length of the bench $L$, the mass $m$, and the spring constant $k$. The springs both have natural length $L/2$.
+
+The equation for $theta$ can be found by balancing forces. If we start with the equation \[mg=2T\sin{\theta}\] where $T$ is the tension in one spring, we can use the equation \[T=k\Delta x\] We then find $\Delta x$ in terms of the $L$ and $\theta$ \[\Delta x=\frac{L}{2\cos{\theta}}-\frac{L}{2}\] \[T=k\frac{L}{2}(\frac{1}{\cos{\theta}}-1)\] If we now substitute back into our first equation then we get \[mg=kL(\tan{\theta}-\sin{\theta})\]
+
+We will use values $m=5.5$kg, $L=0.6$m and $k=850$N. The code uses a recursive function to calculate and output the result using the bisection method of root finding (see chapter 03.03 in reference \cite{holistic}). A precision of 6 significant figures is used, with our initial ``bracket'' around the root being $0$ and $\pi/2$. By considering the physical properties of the system it is clear that these are sensible choices for out initial lower and upper bounds as $\theta$ must lie between these two points. The error at each iteration is given by half the difference between the upper and lower bounds, as we know the root must lie somewhere between this boundary and therefore cannot be more than half the difference from the centre of the boundary. Once the difference between the upper and lower bounds is less than our required precision we take the average of the upper and lower bound, and this gives us our answer to our chosen significant figures. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=1]{masses}
+	\caption{Mass suspended from a bench by two springs.}
+	\label{fig:masses}
+\end{figure}
+
+\section{Question 7}
+
+Here we are considering the error propogation when using the bisection and Newton-Raphson methods for root finding.
+
+\printbibliography
 
 \end{document}
 
