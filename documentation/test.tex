@@ -146,7 +146,7 @@ We will use values $m=5.5$kg, $L=0.6$m and $k=850$N. The code uses a recursive f
 
 \section{Question 7}
 
-Here we are considering the error propogation when using the bisection and Newton-Raphson methods for root finding.
+Here we are considering the error propogation when using the bisection and Newton-Raphson methods for root finding. We can analyse the error when using the bisection method by considering that if at step $n$ we have upper and lower bound $u_n$ and $l_n$, middle value $m_n=\frac{u_n+l_n}{2}$ and error $\epsilon_n=\frac{u_n-l_n}{2}$. We can then say that our new boundaries will be one of $u_n$ or $l_n$ along with $m_n$, which has error $epsilon_n$ associated with it. If we assume that the error in the value of $u_n$/$l_n$ is negligible compared to $epsilon_n$ then we can see that the middle on the $n+1$ iteration is \[m_{n+1}=\frac{|m_n+\epsilon_n-(u_n\, or\, l_n)|}{2}\] This shows us simply that the error is halved on each iteration, giving us: \[\epsilon_{n+1}=\frac{\epsilon_n}{2}\]
 
 \printbibliography
 
