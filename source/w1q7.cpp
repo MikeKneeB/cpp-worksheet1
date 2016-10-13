@@ -1,11 +1,13 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
 int count = 0;
 int w = 15;
+ofstream bisect, nrone, nrtwo;
 
 double Function(double Input_Value){
 	return (Input_Value*Input_Value*Input_Value + 
@@ -22,7 +24,7 @@ double D_Function(double Input_Value){
 
 double Bisection(double Lower_Bound, double Upper_Bound, double Precision){
 	
-	cout << setw(w) << count << setw(w) << (Upper_Bound - Lower_Bound)/2 << setw(w) << (Upper_Bound + Lower_Bound)/2 << endl;
+	bisect << count << "," << (Upper_Bound - Lower_Bound)/2 << "," << (Upper_Bound + Lower_Bound)/2 << endl;
 
 	if (Upper_Bound - Lower_Bound < Precision){
 		return (Upper_Bound + Lower_Bound)/2;
@@ -42,39 +44,60 @@ double Bisection(double Lower_Bound, double Upper_Bound, double Precision){
 
 }
 
-double Newton_Raphson(double x, double Precision){
+double Newton_Raphson(double x, double Precision, ofstream & output){
 	
 	double result = x - Function(x)/D_Function(x);
 
-	cout << setw(w) << count << setw(w) << abs(result - x) << setw(w) << x << endl;
+	output << count << "," << abs(result - x) << "," << result << endl;
 
 	if (abs(result - x) < Precision){
 		return result;
 	}
 	else {
 		count++;
-		return Newton_Raphson(result, Precision);
+		return Newton_Raphson(result, Precision, output);
 	}
+}
+
+double Newton_Raphson2(double x, double Precision, ofstream & output){
+
+	int count = 0;
+
+	double result = x - Function(X)/D_Function(x);
+	double result_next = result - Function(result)/D_Function(result);
+	
+	output << count << "," << result << "," << abs(result - x) << endl;  
+
+	do {
+		count++;
+		output << count << "," << result_next << "," << abs(result_next - result) << endl;
+		result = result_next;
+		result_next = result - Function(result)/D_Function(result);
+	} while (abs(result - result_next) < Precision);
+
 }
 
 int main(){
 
-	cout.precision(6);
-	cout << "Bisection Method:" << endl;
-	cout << left << setw(w) << "Iteration" << setw(w) << "Precision" << setw(w) << "X" << endl;
+	bisect.precision(6);
+	bisect.open("bisection.csv");
 	Bisection(-100, 100, 0.00001);
 
 	count = 0;
 
-	cout << endl << "Newton-Raphson Method 1:" << endl;
-	cout << left << setw(w) << "Iteration" << setw(w) << "Precision" << setw(w) << "X" << endl;
-	Newton_Raphson(0, 0.00001);
+	nrone.precision(6);
+	nrone.open("newtonraphson2.csv");
+	Newton_Raphson(-10, 0.00001, nrone);
 
 	count = 0;
 
-	cout << endl << "Newton-Raphson Method 2:" << endl;
-	cout << left << setw(w) << "Iteration" << setw(w) << "Precision" << setw(w) << "X" << endl;
-	Newton_Raphson(10, 0.00001);
+	nrtwo.precision(6);
+	nrtwo.open("newtonraphson1.csv");
+	Newton_Raphson(10, 0.00001, nrtwo);
+
+	bisect.close();
+	nrone.close();
+	nrtwo.close();
 
 	return 0;
 }

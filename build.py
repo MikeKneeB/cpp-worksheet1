@@ -73,3 +73,11 @@ if args.document == True:
     os.chdir(document_dir)
     call(['pdflatex', document_dir])
     os.chdir('..')
+
+#def buildlatex():
+#    os.chdir(document_dir)
+#    call(['pdflatex', document_dir])
+#    call(['bibtext', tex_name[:-4])
+#    call(['pdflatex', document_dir])
+#    call(['pdflatex', document_dir])
+#    os.chdir('..')
