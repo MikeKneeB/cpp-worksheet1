@@ -44,8 +44,9 @@ int main(){
 	double phi = (-1+sqrt(5))/2;
 	double pow_phi = phi; //Initialise our power of phi to phi, ie. phi^1.
 	int N;
-	cout << "Please enter N : ";
+	cout << "Please enter N (recommended not to enter N > ~40): ";
 	cin >> N;
+	cout << endl << "Writing to file 'output'..." << endl;
 
 	//Table heading for basic multiplying calculation.
 	output_file << endl << "Calculated directly:" << endl;
@@ -53,7 +54,9 @@ int main(){
 	for (int i = 0; i < N; i++){
 		output_file << i+1 << "\t" << pow_phi << endl;		
 		pow_phi *= phi;
-	}	
+	}
+
+	cout << "Done direct multiplication..." << endl;	
 
 	//Heading for recursion using floats.
 	output_file << endl << "Recursion with floats:" << endl;
@@ -62,12 +65,16 @@ int main(){
 		output_file << j+1 << "\t" << recursion_relation<float>(j+1, 1, float(phi)) << endl;
 	}
 
+	cout << "Done float recursion..." << endl;
+
 	//Heading for recursion using doubles.
 	output_file << endl << "Recursion with double:" << endl;
 	output_file << "n\tphi^n" << endl;
 	for (int k = 0; k < N; k++){
 		output_file << k+1 << "\t" << recursion_relation<double>(k+1, 1, phi) << endl;
 	}
+
+	cout << "Done double recursion... Finished!" << endl;
 
 	output_file.close(); //Closing output file.
 

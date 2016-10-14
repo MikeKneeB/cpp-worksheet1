@@ -1,0 +1,20 @@
+function [] = MakeGraph()
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+
+dataTableBisection = readtable('bisection.csv');
+dataTableNR1 = readtable('newtonraphson1.csv');
+dataTableNR2 = readtable('newtonraphson2.csv');
+
+assignin('base', 'table1', dataTableBisection);
+assignin('base', 'table2', dataTableNR1);
+assignin('base', 'table3', dataTableNR2);
+
+finalResult = table1{-1,-1};
+
+plot(dataTableBisection{:,1},dataTableBisection{:,2},dataT);
+xlabel('Iteration');
+ylabel('Absolute error');
+
+end
+
