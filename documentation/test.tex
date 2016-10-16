@@ -28,7 +28,7 @@
 
 For the first excercise a number of commands were input to the linux bash prompt, in order to understand what the different commands do and how to use them. The commands are listed here in order, with the output following and finally a description of what the command has done.
 \begin{enumerate}[label=\alph*)]
-	\item mkdir compphys
+	\item \texttt{mkdir compphys}
 
 		No output, but a new directory has been created called ``compphys''
 	\item cd compphys
@@ -37,7 +37,7 @@ For the first excercise a number of commands were input to the linux bash prompt
 	\item cat $>$ file1.txt [rtn] this is my first file [rtn][ctrl-c]
 
 		No output is printed to the screen, however a new file called ``file1.txt'' has been created, containing the text ``this is my first file''
-	\item ls
+	\item \texttt{ls}
 
 		Ouput is: 
 		\begin{verbatim}
@@ -53,7 +53,7 @@ For the first excercise a number of commands were input to the linux bash prompt
 		\end{verbatim}
 
 		The more command pages files to the standard output, seen as the file ``file1.txt'' only has one line, that line is simply printed to the terminal.
-	\item xclock\&
+	\item \texttt{xclock\&}
 
 		Output is shown in figure \ref{fig:xclock}.
 		\begin{figure}
@@ -63,8 +63,8 @@ For the first excercise a number of commands were input to the linux bash prompt
 			\label{fig:xclock}
 		\end{figure}
 
-		The xclock\& command starts an xclock process. This will be opened on the client side through ssh if X11 forwarding is enabled, and the client is able to display xwindow objects. The ampersand is to tell the process to start the process in the background, ie. to allow the shell session to continue while xclock is still running.
-	\item whoami
+		The \texttt{xclock\&} command starts an xclock process. This will be opened on the client side through ssh if X11 forwarding is enabled, and the client is able to display xwindow objects. The ampersand is to tell the process to start the process in the background, ie. to allow the shell session to continue while xclock is still running.
+	\item \texttt{whoami}
 
 		Output is:
 		\begin{verbatim}
@@ -73,44 +73,45 @@ For the first excercise a number of commands were input to the linux bash prompt
 
 		This command prints the username of the current user.
 
-	\item man ls
+	\item \texttt{man ls}
 
-		Output is a man page, a text document describing the usage of the ``ls'' command. Calling man $<$command$>$ will display a man page on any command with proper documentation. Figure \ref{fig:manpage} shows the top of the ls man page.
+		Output is a man page, a text document describing the usage of the \texttt{ls} command. Calling \texttt{man $<$command$>$} will display a man page on any command with proper documentation. Figure \ref{fig:manpage} shows the top of the ls man page.
 		\begin{figure}
 			\centering
 			\includegraphics[scale=0.5]{manls}
-			\caption{Top of the man page for the ``ls'' command}
+			\caption{Top of the man page for the \texttt{ls} command}
 			\label{fig:manpage}
 		\end{figure}
 
-	\item top
+	\item \texttt{top}
 
 		Output is a display of running processes, ordered by CPU usage. The column processes are sorted by, and other options can be changed using commands while top is running. Figure \ref{fig:top} shows top while running, with the columns sorted by CPU usage.
 		\begin{figure}
 			\centering
 			\includegraphics[scale=0.5]{top}
-			\caption{The ``top'' command in action}
+			\caption{The \texttt{top} command in action}
 			\label{fig:top}
 		\end{figure}
 
-	\item kill
+	\item \texttt{kill}
 
-		The ``kill'' command is used to stop running processes. In order to use kill one needs the PID of the process to be stopped. For this the ``ps'' command is used, which lists all the processes running under the current user's UID. Once a PID is known ``kill [PID]'' will send a terminate signal to the process.
+		The \texttt{kill} command is used to stop running processes. In order to use kill one needs the PID of the process to be stopped. For this the \texttt{ps} command is used, which lists all the processes running under the current user's UID. Once a PID is known \texttt{kill [PID]} will send a terminate signal to the process.
 
 		The output of the kill command is:
 		\begin{verbatim}
 		[running processes] Terminated\tab [process name]
 		\end{verbatim}
 
-	\item ps -u [username]
+	\item \texttt{ps -u [username]}
 
-		As described above the ``ps'' command displays currently running processes. The -u option denotes that all the processes belonging to a user specified by [username] should be displayed. The default behaviour of ``ps'' is to display the processes belonging to the current user running in the current TTY. 
+		As described above the \texttt{ps} command displays currently running processes. The -u option denotes that all the processes belonging to a user specified by [username] should be displayed. The default behaviour of texttt{ps} is to display the processes belonging to the current user running in the current TTY. 
 
-		An example output of the ``ps -u [username]'' is shown in figure \ref{fig:ps}. 
+		An example output of the \texttt{ps -u [username]} is shown in figure \ref{fig:ps}. 
+
 		\begin{figure}
 			\centering
 			\includegraphics[scale=0.4]{ps}
-			\caption{An example of ``ps -u [username]'' output}
+			\caption{An example of \texttt{ps -u [username]} output}
 			\label{fig:ps}
 		\end{figure}
 
@@ -125,9 +126,9 @@ The recursion relation \[\phi^{n+1}=\phi^{n-1}-\phi^{n}\] can be shown by noting
 
 The base case is relatively easy to show using the properties of the golden ratio, and by extension its conjugate which we are interested in. It is easiest to show by taking the case that $n_0=0$, especially when we note that a property of the golden ratio (see reference \cite{goldenratio}) ($\Phi$) is \[\frac{1}{\Phi}=\Phi-1\] and therefore, because the silver ratio $\phi=\frac{1}{\Phi}$, that the silver ratio has a similar property \[\frac{1}{\phi}=\phi+1\] If we now take our recursion relation with $n=0$ \[\phi^1=\phi^{-1}-\phi^0\] \[\phi=\frac{1}{\phi}-1\] we can see that the recursion relation is satisfied by considering the properties of the silver ratio as the conjugate of the golden ratio.
 
-The function \texttt{recursion\_relation} (starting at line $20$ in the code) is the reursive function that uses the recursion relation defined as $\phi^{n+1}=\phi^{n-1}-\phi^{n}$. When the programme is run with values of $N$ greater than around $40$ the programme runs extremely slowly. This is because this recursive function runs in $O(n^2)$ time, and is therefore very slow.
+We can see by looking at the results that the two recursive functions both fail with varying degrees of severity. The function using floats begins to fluctuate relatively quickly, and produces very poor results. The double precision recursive function performs better, however it still produces fluctuations and innacuracies compared to our reference value calculated using direct multiplication. This happens in part because the error at each stage is compounded, so the relatively small error that occurs by using floating point numbers is amplified when larger values of $N$ are used.
 
-We can see by looking at the results that the two recursive functions both fail with varying degrees of severity. The function using floats begins to fluctuate relatively quickly, and produces very poor results. The double precision recursive function performs better, however it still produces fluctuations and innacuracies compared to our reference value calculated using direct multiplication.
+There is another number that satisfies this recursion relation, which corresponds to the negative golden ratio, $-\Phi=-1.61803$. This can be shown by substituting $-1/\phi$ into the recursion relation's base case where $n=0$ \[-frac{1}{\phi}^1=-frac{1}{\phi}^-1-frac{1}{phi}^0\] \[-frac{1}{\phi}=-\phi-1\] which we can see is equivalent to the recursion relation we already showed was valid. The fact that another number also satisfies the recursion relation means that fluctuations in our algorithm are not necessarily always flattened out by convergence, and can cause minor fluctuations and innacuracies to turn into vast errors.
 
 \section{Question 6}
 
@@ -163,11 +164,11 @@ and if we substitue this into our error relationship above we get
 We can then substitute in the taylor expansion above, and its derivative which is given by
 \[f'(x_n)=f'(x_{root})+f''(x_{root})\epsilon_n+...\]
 as $epsilon_n$ is linearly related to $x_n$. This then gives us
-\[\epsilon_{n+1}=\epsilon_n+\frac{f(f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2...}{f'(f'(x_{root})+f''(x_{root})\epsilon_n+...\}\approx\epsilon_n+\frac{f(f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2}{f'(f'(x_{root})+f''(x_{root})\epsilon_n}\]
+\[\epsilon_{n+1}=\epsilon_n+\frac{f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2+...}{f'(x_{root})+f''(x_{root})\epsilon_n+...}\approx \epsilon_n+\frac{f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2}{f'(x_{root})+f''(x_{root})\epsilon_n}\]
 Next we can simply rearrange this equation, to give us
-\[\epsilon_{n+1}= \frac{f'(x_{root})\epsilon_n+f''(x_{root})\epsilon_{n}^2-(f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2}{f'(f'(x_{root})+f''(x_{root})\epsilon_n}\]
+\[\epsilon_{n+1}= \frac{f'(x_{root})\epsilon_n+f''(x_{root})\epsilon_{n}^2-(f'(x_{root})\epsilon_n+\frac{1}{2}f''(x_{root})\epsilon_{n}^2}{f'(x_{root})+f''(x_{root})\epsilon_n}\]
 \[\epsilon_{n+1}=\frac{f''(x_{root})\epsilon_{n}^2}{2f'(x_{root})}\]
-So we can see that the error at each iteration should decrease quadratically, a large improvement on the bisection method. This relationship above assumes that $f'(x_{root})\neq0$, and if the derivative is 0 then the algorithm will not converge on a root. For further details see reference \cite{newtonsmethod}.
+So we can see that the error at each iteration should decrease quadratically, a large improvement on the bisection method. This relationship above assumes that $f'(x_{root})\neq0$, and if the derivative is 0 then the algorithm will not converge on a root. For further details see reference \cite{newtonmethod}.
 
 It is possible for the Newton-Raphson method to not converge for other reasons as well. If the chosen initial value for $x_0$ is too close to a local maxima or minima, or too close to an asymptote the method may fail to converge on a root of the equation.
 
@@ -177,12 +178,13 @@ We can also see that the second Newton-Raphson run converges very quickly, withi
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=1]{errorgraph}
+	\includegraphics[scale=0.75]{errorgraph}
 	\caption{Graph showing the error at each iteration for the bisection method and two seperate runs of the Newton-Raphson method.}
 	\label{fig:errorgraph}
 \end{figure}
 
-\printbibliography
+\clearpage
+\printbibliography[heading=bibintoc]
 
 \end{document}
 

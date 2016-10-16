@@ -2,8 +2,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Question 1}{1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Question 4}{4}
+\contentsline {section}{\numberline {2}Question 4}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Question 6}{5}
+\contentsline {section}{\numberline {3}Question 6}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Question 7}{6}
+\contentsline {section}{\numberline {4}Question 7}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{10}
